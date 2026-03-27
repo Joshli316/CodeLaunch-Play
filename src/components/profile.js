@@ -79,7 +79,7 @@ export function render() {
             return `
               <div class="flex flex-col items-center gap-1 ${earned ? '' : 'opacity-30'}" title="${bilingual(badge.desc)}">
                 <span class="text-2xl">${badge.icon}</span>
-                <span class="text-[10px] text-center text-navy/60 leading-tight">${bilingual(badge.name)}</span>
+                <span class="text-xs text-center text-navy/60 leading-tight">${bilingual(badge.name)}</span>
               </div>
             `;
           }).join('')}
@@ -92,14 +92,14 @@ export function render() {
         <div class="flex flex-wrap gap-1">
           ${getTermMasteryGrid().map(item => {
             const colors = ['bg-gray-200', 'bg-yellow-200', 'bg-yellow-300', 'bg-orange-300', 'bg-coral-light', 'bg-mint'];
-            return `<div class="w-4 h-4 rounded-sm ${colors[item.mastery.stars]}" title="${item.label} (${item.zh}) — ${item.mastery.stars}⭐"></div>`;
+            return `<div class="w-5 h-5 rounded-sm ${colors[item.mastery.stars]}" title="${item.label} (${item.zh}) — ${item.mastery.stars}⭐"></div>`;
           }).join('')}
           ${getCommandMasteryGrid().map(item => {
             const colors = ['bg-gray-200', 'bg-yellow-200', 'bg-yellow-300', 'bg-orange-300', 'bg-coral-light', 'bg-mint'];
-            return `<div class="w-4 h-4 rounded-sm ${colors[item.mastery.stars]}" title="${item.label} — ${item.mastery.stars}⭐"></div>`;
+            return `<div class="w-5 h-5 rounded-sm ${colors[item.mastery.stars]}" title="${item.label} — ${item.mastery.stars}⭐"></div>`;
           }).join('')}
         </div>
-        <div class="flex gap-3 mt-3 text-[10px] text-navy/40">
+        <div class="flex gap-3 mt-3 text-xs text-navy/40">
           <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-sm bg-gray-200 inline-block"></span> 0⭐</span>
           <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-sm bg-orange-300 inline-block"></span> 3⭐</span>
           <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-sm bg-mint inline-block"></span> 5⭐</span>

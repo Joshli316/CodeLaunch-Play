@@ -55,7 +55,7 @@ export function renderBottomNav() {
           return `
             <a href="#${tab.path}" class="flex flex-col items-center py-1 px-3 no-underline ${isActive ? 'text-coral' : 'text-navy/50'} transition-colors" ${isActive ? 'aria-current="page"' : ''}>
               <span class="text-xl" aria-hidden="true">${tab.icon}</span>
-              <span class="text-[10px] font-medium mt-0.5">${t(tab.label)}</span>
+              <span class="text-xs font-medium mt-0.5">${t(tab.label)}</span>
             </a>
           `;
         }).join('')}

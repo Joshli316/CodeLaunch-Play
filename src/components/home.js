@@ -32,9 +32,9 @@ export function render() {
       </div>
 
       <!-- Progress Ring + Stats -->
-      <div class="flex items-center justify-center gap-8">
-        <div class="relative">
-          <svg width="120" height="120" class="transform -rotate-90" role="img" aria-label="${todayGames}/${dailyGoal} ${t('home.todayProgress')}">
+      <div class="flex items-center justify-center gap-4 sm:gap-8">
+        <div class="relative shrink-0">
+          <svg width="110" height="110" viewBox="0 0 120 120" class="transform -rotate-90" role="img" aria-label="${todayGames}/${dailyGoal} ${t('home.todayProgress')}">
             <circle cx="60" cy="60" r="45" fill="none" stroke="#F5EDE3" stroke-width="8"/>
             <circle cx="60" cy="60" r="45" fill="none" stroke="#FF6B4A" stroke-width="8"
               stroke-dasharray="${circumference}" stroke-dashoffset="${strokeOffset}"
@@ -92,7 +92,7 @@ export function render() {
             return `
               <div class="flex-1 flex flex-col items-center gap-1">
                 <div class="w-full h-2 rounded-full ${isPast ? 'bg-mint' : isCurrent ? 'bg-coral' : 'bg-cream-dark'}"></div>
-                <span class="text-[10px] ${isCurrent ? 'font-bold text-coral' : 'text-navy/30'}">${isBoss ? '⚔️' : dayNum}</span>
+                <span class="text-xs ${isCurrent ? 'font-bold text-coral' : 'text-navy/30'}">${isBoss ? '⚔️' : dayNum}</span>
               </div>
             `;
           }).join('')}

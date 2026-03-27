@@ -90,8 +90,11 @@ function startGame(difficulty) {
     [cards[i], cards[j]] = [cards[j], cards[i]];
   }
 
-  // Grid sizing
-  const cols = pairCount <= 3 ? 3 : pairCount <= 6 ? 4 : 5;
+  // Grid sizing — cap columns on small screens to prevent overflow
+  const isSmall = window.innerWidth < 400;
+  const cols = isSmall
+    ? (actualPairs <= 3 ? 2 : actualPairs <= 6 ? 3 : 4)
+    : (actualPairs <= 3 ? 3 : actualPairs <= 6 ? 4 : 5);
 
   gameState = {
     difficulty,
@@ -134,7 +137,7 @@ function updateTimer() {
 function renderBoard() {
   const board = document.getElementById('fm-board');
   board.style.gridTemplateColumns = `repeat(${gameState.cols}, 1fr)`;
-  board.style.maxWidth = `${gameState.cols * 80}px`;
+  board.style.maxWidth = `min(${gameState.cols * 80}px, 100%)`;
 
   board.innerHTML = gameState.cards.map(card => {
     const isFlipped = gameState.flipped.includes(card.id) || gameState.matched.has(card.id);

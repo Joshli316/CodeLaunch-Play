@@ -78,7 +78,7 @@ function renderCards() {
     items = applyFilter(items, now);
 
     container.innerHTML = items.length === 0
-      ? '<p class="text-center text-navy/40 py-8">${t('empty.noTermsMatch')}</p>'
+      ? `<p class="text-center text-navy/40 py-8">${t('empty.noTermsMatch')}</p>`
       : items.map(term => `
         <div class="bg-white rounded-xl p-4 shadow-sm">
           <div class="flex items-start justify-between">
@@ -94,7 +94,7 @@ function renderCards() {
           <p class="text-xs text-navy/30 mt-1 italic">${term.example || ''}</p>
           <div class="flex items-center gap-2 mt-2">
             <span class="text-[10px] px-2 py-0.5 rounded bg-cream-dark text-navy/40">W${term.week}</span>
-            ${term.mastery.nextReview && term.mastery.nextReview <= now ? '<span class="text-[10px] px-2 py-0.5 rounded bg-coral/10 text-coral">${t('learn.reviewDue')}</span>' : ''}
+            ${term.mastery.nextReview && term.mastery.nextReview <= now ? `<span class="text-[10px] px-2 py-0.5 rounded bg-coral/10 text-coral">${t('learn.reviewDue')}</span>` : ''}
           </div>
         </div>
       `).join('');
@@ -107,7 +107,7 @@ function renderCards() {
     items = applyFilter(items, now);
 
     container.innerHTML = items.length === 0
-      ? '<p class="text-center text-navy/40 py-8">${t('empty.noCommandsMatch')}</p>'
+      ? `<p class="text-center text-navy/40 py-8">${t('empty.noCommandsMatch')}</p>`
       : items.map(cmd => `
         <div class="bg-white rounded-xl p-4 shadow-sm">
           <div class="flex items-start justify-between">
@@ -117,7 +117,7 @@ function renderCards() {
           <p class="text-sm text-navy/60 mt-2">${bilingual(cmd.description)}</p>
           <div class="flex items-center gap-2 mt-2">
             <span class="text-[10px] px-2 py-0.5 rounded bg-cream-dark text-navy/40">W${cmd.week}</span>
-            ${cmd.mastery.nextReview && cmd.mastery.nextReview <= now ? '<span class="text-[10px] px-2 py-0.5 rounded bg-coral/10 text-coral">${t('learn.reviewDue')}</span>' : ''}
+            ${cmd.mastery.nextReview && cmd.mastery.nextReview <= now ? `<span class="text-[10px] px-2 py-0.5 rounded bg-coral/10 text-coral">${t('learn.reviewDue')}</span>` : ''}
           </div>
         </div>
       `).join('');

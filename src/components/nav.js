@@ -86,7 +86,7 @@ export function renderBottomNav() {
       </nav>
       <div class="p-4 border-t border-navy-light">
         <a href="https://claude-code-launch.pages.dev/" target="_blank" rel="noopener" class="text-sm text-gray-500 hover:text-coral no-underline flex items-center gap-2">
-          📖 CodeLaunch 码上出发
+          📖 CodeFu 码功
         </a>
       </div>
     </div>

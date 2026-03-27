@@ -55,7 +55,7 @@ export function render() {
         <h3 class="font-bold text-navy">${t('settings.about')}</h3>
         <p class="text-sm text-navy/60">CodeFu 码功 — Master the Language of Code</p>
         <p class="text-sm text-navy/60">${t('settings.version')} 1.0.0</p>
-        <a href="https://claude-code-launch.pages.dev/" target="_blank" rel="noopener" class="text-sm text-coral hover:underline block">📖 CodeLaunch 码上出发 →</a>
+        <a href="https://codefu.pages.dev/" target="_blank" rel="noopener" class="text-sm text-coral hover:underline block">📖 CodeFu 码功 →</a>
       </div>
     </div>
   `;

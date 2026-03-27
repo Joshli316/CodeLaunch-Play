@@ -4,7 +4,6 @@
 import { t } from '../i18n.js';
 import { getState, updateState, resetState, exportState } from '../state.js';
 import { navigate } from '../router.js';
-import { refreshNav } from './nav.js';
 
 export function render() {
   const state = getState();

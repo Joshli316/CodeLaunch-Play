@@ -2,11 +2,9 @@
  * Learn / Study Mode — Browseable card deck
  */
 import { t, bilingual } from '../i18n.js';
-import { getState, getMastery } from '../state.js';
+import { getMastery } from '../state.js';
 import { glossaryTerms } from '../content/glossary-data.js';
 import { commands } from '../content/commands-data.js';
-import { getDueTerms } from '../engine/spaced-repetition.js';
-import { navigate } from '../router.js';
 
 let currentFilter = 'all';
 let currentTab = 'terms';

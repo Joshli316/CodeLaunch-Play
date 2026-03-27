@@ -1,7 +1,7 @@
 /**
  * Per-term Mastery Tracking
  */
-import { getState, getMastery } from '../state.js';
+import { getMastery } from '../state.js';
 import { glossaryTerms } from '../content/glossary-data.js';
 import { commands } from '../content/commands-data.js';
 

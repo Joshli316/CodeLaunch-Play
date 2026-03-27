@@ -1,7 +1,7 @@
 /**
  * CodeFu 码功 — Main App Controller
  */
-import { route, startRouter, navigate } from './router.js';
+import { route, startRouter } from './router.js';
 import { getState } from './state.js';
 import { initNav, refreshNav } from './components/nav.js';
 

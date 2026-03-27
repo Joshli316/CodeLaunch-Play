@@ -2,7 +2,7 @@
  * Game 3: Term Sprint 术语冲刺 — 60-second speed quiz
  */
 import { t, bilingual } from '../i18n.js';
-import { getState, useHeart, getHearts } from '../state.js';
+import { getState, useHeart } from '../state.js';
 import { glossaryTerms } from '../content/glossary-data.js';
 import { getDayContent } from '../content/curriculum.js';
 import { createTimer, formatTime } from '../engine/timer.js';

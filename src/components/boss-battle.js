@@ -6,12 +6,11 @@ import { getState, updateState } from '../state.js';
 import { glossaryTerms } from '../content/glossary-data.js';
 import { commands } from '../content/commands-data.js';
 import { getRandomScenarios } from '../content/scenarios-data.js';
-import { getDayContent } from '../content/curriculum.js';
 import { createTimer, formatTime } from '../engine/timer.js';
 import { awardGameCompletion } from '../engine/scoring.js';
 import { reviewTerm } from '../engine/spaced-repetition.js';
 import { checkAchievements } from '../engine/achievements.js';
-import { playCorrect, playWrong, playComplete, playLevelUp } from '../audio.js';
+import { playCorrect, playWrong, playLevelUp } from '../audio.js';
 import { navigate } from '../router.js';
 import { refreshNav } from './nav.js';
 

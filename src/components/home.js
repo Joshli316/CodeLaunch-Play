@@ -1,8 +1,8 @@
 /**
  * Home Dashboard
  */
-import { t, bilingual } from '../i18n.js';
-import { getState, getLevelInfo, getHearts } from '../state.js';
+import { t } from '../i18n.js';
+import { getState, getLevelInfo } from '../state.js';
 import { getMasteryStats } from '../engine/mastery.js';
 import { getDayContent } from '../content/curriculum.js';
 import { navigate } from '../router.js';

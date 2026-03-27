@@ -7,7 +7,7 @@ import { getRandomExercise } from '../content/prompts-data.js';
 import { getDayContent } from '../content/curriculum.js';
 import { awardGameCompletion, getStarRating } from '../engine/scoring.js';
 import { checkAchievements } from '../engine/achievements.js';
-import { playCorrect, playWrong, playComplete } from '../audio.js';
+import { playWrong, playComplete } from '../audio.js';
 import { createStopwatch, formatTime } from '../engine/timer.js';
 import { navigate } from '../router.js';
 import { refreshNav } from './nav.js';

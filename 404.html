@@ -3,12 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CodeFu 码功</title>
+  <title>404 — CodeFu 码功</title>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: #FFF8F0; color: #1A1A2E; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; text-align: center; }
+    .wrap { max-width: 400px; padding: 2rem; }
+    h1 { font-size: 4rem; margin: 0; }
+    p { color: #1a1a2e80; margin: 1rem 0; }
+    a { color: #FF6B4A; text-decoration: none; font-weight: 700; }
+    a:hover { text-decoration: underline; }
+  </style>
   <script>
-    // SPA fallback: redirect to index with hash
-    const path = window.location.pathname;
-    window.location.replace('/' + '#' + path);
+    // SPA fallback: redirect hash routes to index
+    if (window.location.pathname !== '/') {
+      const path = window.location.pathname;
+      window.location.replace('/#' + path);
+    }
   </script>
 </head>
-<body></body>
+<body>
+  <div class="wrap">
+    <h1>404</h1>
+    <p>Page not found. 页面未找到。</p>
+    <a href="/">← Back to CodeFu 码功</a>
+  </div>
+</body>
 </html>

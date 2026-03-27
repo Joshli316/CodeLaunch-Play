@@ -14,11 +14,12 @@ export function renderTopBar() {
 
   return `
     <div class="flex items-center justify-between px-4 py-2 max-w-4xl mx-auto w-full">
-      <a href="#/home" class="flex items-center gap-1 no-underline">
+      <a href="#/home" class="flex items-center gap-1 no-underline md:hidden">
         <span class="font-mono text-2xl font-bold text-coral">{</span>
         <span class="text-lg font-black text-navy">Code</span><span class="text-lg font-black text-coral">Fu</span>
         <span class="font-mono text-2xl font-bold text-coral">}</span>
       </a>
+      <div class="hidden md:block"></div>
       <div class="flex items-center gap-3 text-sm">
         <div class="flex items-center gap-1" title="${t('topbar.streak')}">
           <span class="streak-fire">🔥</span>
@@ -63,7 +64,7 @@ export function renderBottomNav() {
   `;
 
   const desktopSidebar = `
-    <div class="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-navy flex-col z-40">
+    <div class="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-navy flex-col z-50">
       <div class="flex items-center gap-1 p-6">
         <span class="font-mono text-3xl font-bold text-coral">{</span>
         <div class="flex flex-col">

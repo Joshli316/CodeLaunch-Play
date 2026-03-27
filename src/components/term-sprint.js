@@ -1,7 +1,7 @@
 /**
  * Game 3: Term Sprint 术语冲刺 — 60-second speed quiz
  */
-import { t, bilingual } from '../i18n.js';
+import { t } from '../i18n.js';
 import { getState, useHeart } from '../state.js';
 import { glossaryTerms } from '../content/glossary-data.js';
 import { getDayContent } from '../content/curriculum.js';
@@ -12,6 +12,7 @@ import { checkAchievements } from '../engine/achievements.js';
 import { playCorrect, playWrong, playComplete } from '../audio.js';
 import { navigate } from '../router.js';
 import { refreshNav } from './nav.js';
+import { renderGameResult } from './game-result.js';
 
 let gameState = null;
 
@@ -189,21 +190,15 @@ function endGame() {
   document.getElementById('ts-timer').textContent = '0s';
   const resultEl = document.getElementById('ts-result');
   resultEl.classList.remove('hidden');
-  resultEl.innerHTML = `
-    <div class="space-y-4">
-      <h3 class="text-2xl font-black text-navy">${t('game.complete')}</h3>
-      <div class="text-5xl font-black text-coral">${gameState.correct}</div>
-      <div class="text-navy/50 text-sm">${t('game.accuracy')}: ${gameState.totalAnswered > 0 ? Math.round((gameState.correct / gameState.totalAnswered) * 100) : 0}%</div>
-      <div class="flex justify-center gap-6 text-sm">
-        <div><span class="text-navy/50">${t('game.streak')}</span><br><strong>${gameState.maxCombo}</strong></div>
-        <div><span class="text-navy/50">Total</span><br><strong>${gameState.totalAnswered}</strong></div>
-      </div>
-      ${result.levelUp ? '<div class="text-coral font-bold text-lg">🎉 Level Up!</div>' : ''}
-      ${badges.length > 0 ? badges.map(b => `<div class="text-mint font-bold">${b.icon} ${bilingual(b.name)}</div>`).join('') : ''}
-      <div class="flex gap-3 justify-center">
-        <button onclick="location.hash='#/game/term-sprint'" class="px-6 py-3 bg-coral text-white rounded-xl font-bold">${t('game.playAgain')}</button>
-        <button onclick="location.hash='#/home'" class="px-6 py-3 bg-cream-dark text-navy rounded-xl font-bold">${t('game.back')}</button>
-      </div>
-    </div>
-  `;
+  const accuracyPct = gameState.totalAnswered > 0 ? Math.round((gameState.correct / gameState.totalAnswered) * 100) : 0;
+  resultEl.innerHTML = renderGameResult({
+    title: t('game.complete'),
+    heroContent: `<div class="text-5xl font-black text-coral">${gameState.correct}</div><div class="text-navy/50 text-sm">${t('game.accuracy')}: ${accuracyPct}%</div>`,
+    stats: [
+      { label: t('game.streak'), value: gameState.maxCombo },
+      { label: 'Total', value: gameState.totalAnswered },
+    ],
+    result, badges,
+    replayRoute: '#/game/term-sprint',
+  });
 }

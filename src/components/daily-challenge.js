@@ -14,6 +14,7 @@ import { playCorrect, playWrong, playComplete } from '../audio.js';
 import { createStopwatch, formatTime } from '../engine/timer.js';
 import { navigate } from '../router.js';
 import { refreshNav } from './nav.js';
+import { renderGameResult } from './game-result.js';
 import { updateStreak } from '../state.js';
 
 let gameState = null;
@@ -169,14 +170,13 @@ function endChallenge() {
   playComplete();
   refreshNav();
 
-  document.getElementById('dc-content').innerHTML = `
-    <div class="text-center py-8 space-y-4">
+  document.getElementById('dc-content').innerHTML = renderGameResult({
+    title: t('daily.completed'),
+    heroContent: `
       <div class="text-5xl">🎉</div>
-      <h3 class="text-2xl font-black text-navy">${t('daily.completed')}</h3>
       <p class="text-coral font-bold">${t('daily.streakKept')} 🔥 ${getState().streak}</p>
       <div class="text-navy/50 text-sm">${gameState.correct}/${total} correct · ${formatTime(elapsed)}</div>
-      ${badges.length > 0 ? badges.map(b => `<div class="text-mint font-bold">${b.icon} ${bilingual(b.name)}</div>`).join('') : ''}
-      <button onclick="location.hash='#/home'" class="px-6 py-3 bg-coral text-white rounded-xl font-bold">${t('game.back')}</button>
-    </div>
-  `;
+    `,
+    result: {}, badges,
+  });
 }

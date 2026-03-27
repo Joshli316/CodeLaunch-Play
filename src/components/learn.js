@@ -5,6 +5,7 @@ import { t, bilingual } from '../i18n.js';
 import { getMastery } from '../state.js';
 import { glossaryTerms } from '../content/glossary-data.js';
 import { commands } from '../content/commands-data.js';
+import { renderStars } from './game-result.js';
 
 let currentFilter = 'all';
 let currentTab = 'terms';
@@ -87,7 +88,7 @@ function renderCards() {
               <span class="font-bold text-navy">${term.zh}</span>
               <span class="text-navy/30 text-xs ml-1">${term.pinyin}</span>
             </div>
-            <div class="text-xs">${renderStars(term.mastery.stars)}</div>
+            <div class="text-xs">${renderStars(term.mastery.stars, 5)}</div>
           </div>
           <p class="text-sm text-navy/60 mt-2">${bilingual(term.definition)}</p>
           <p class="text-xs text-navy/30 mt-1 italic">${term.example || ''}</p>
@@ -111,7 +112,7 @@ function renderCards() {
         <div class="bg-white rounded-xl p-4 shadow-sm">
           <div class="flex items-start justify-between">
             <span class="font-mono font-bold text-coral">${cmd.command}</span>
-            <div class="text-xs">${renderStars(cmd.mastery.stars)}</div>
+            <div class="text-xs">${renderStars(cmd.mastery.stars, 5)}</div>
           </div>
           <p class="text-sm text-navy/60 mt-2">${bilingual(cmd.description)}</p>
           <div class="flex items-center gap-2 mt-2">
@@ -142,6 +143,3 @@ function applyFilter(items, now) {
   }
 }
 
-function renderStars(count) {
-  return '⭐'.repeat(count) + '☆'.repeat(5 - count);
-}

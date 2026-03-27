@@ -1,7 +1,7 @@
 /**
  * Game 1: Flash Match 闪卡配对 — Memory card matching
  */
-import { t, bilingual } from '../i18n.js';
+import { t } from '../i18n.js';
 import { getState } from '../state.js';
 import { getDayContent } from '../content/curriculum.js';
 import { glossaryTerms } from '../content/glossary-data.js';
@@ -12,6 +12,7 @@ import { checkAchievements } from '../engine/achievements.js';
 import { playCorrect, playWrong, playComplete } from '../audio.js';
 import { navigate } from '../router.js';
 import { refreshNav } from './nav.js';
+import { renderGameResult } from './game-result.js';
 
 let gameState = null;
 
@@ -215,21 +216,15 @@ function endGame() {
 
   const resultEl = document.getElementById('fm-result');
   resultEl.classList.remove('hidden');
-  resultEl.innerHTML = `
-    <div class="space-y-4">
-      <h3 class="text-2xl font-black text-navy">${t('game.complete')}</h3>
-      <div class="text-4xl">${'⭐'.repeat(stars)}${'☆'.repeat(3 - stars)}</div>
-      <div class="flex justify-center gap-6 text-sm">
-        <div><span class="text-navy/50">${t('game.moves')}</span><br><strong>${gameState.moves}</strong></div>
-        <div><span class="text-navy/50">${t('game.time')}</span><br><strong>${formatTime(elapsed)}</strong></div>
-        <div><span class="text-navy/50">${t('game.streak')}</span><br><strong>${gameState.maxCombo}</strong></div>
-      </div>
-      ${result.levelUp ? '<div class="text-coral font-bold text-lg level-up-text">🎉 Level Up!</div>' : ''}
-      ${badges.length > 0 ? badges.map(b => `<div class="text-mint font-bold">${b.icon} ${bilingual(b.name)}</div>`).join('') : ''}
-      <div class="flex gap-3 justify-center">
-        <button onclick="location.hash='#/game/flash-match'" class="px-6 py-3 bg-coral text-white rounded-xl font-bold">${t('game.playAgain')}</button>
-        <button onclick="location.hash='#/home'" class="px-6 py-3 bg-cream-dark text-navy rounded-xl font-bold">${t('game.back')}</button>
-      </div>
-    </div>
-  `;
+  resultEl.innerHTML = renderGameResult({
+    title: t('game.complete'),
+    stars,
+    stats: [
+      { label: t('game.moves'), value: gameState.moves },
+      { label: t('game.time'), value: formatTime(elapsed) },
+      { label: t('game.streak'), value: gameState.maxCombo },
+    ],
+    result, badges,
+    replayRoute: '#/game/flash-match',
+  });
 }

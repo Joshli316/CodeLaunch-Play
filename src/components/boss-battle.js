@@ -13,6 +13,7 @@ import { checkAchievements } from '../engine/achievements.js';
 import { playCorrect, playWrong, playLevelUp } from '../audio.js';
 import { navigate } from '../router.js';
 import { refreshNav } from './nav.js';
+import { renderGameResult } from './game-result.js';
 
 let gameState = null;
 
@@ -227,19 +228,16 @@ function endBattle() {
   const badges = checkAchievements({ game: 'boss-battle', passed, week });
   refreshNav();
 
-  document.getElementById('bb-content').innerHTML = `
-    <div class="text-center py-8 space-y-6">
+  document.getElementById('bb-content').innerHTML = renderGameResult({
+    title: passed ? t('game.passed') : t('game.failed'),
+    heroContent: `
       <div class="text-6xl">${passed ? '🏆' : '💪'}</div>
-      <h3 class="text-3xl font-black ${passed ? 'text-mint' : 'text-navy'}">${passed ? t('game.passed') : t('game.failed')}</h3>
       <div class="text-5xl font-black text-coral">${pct}%</div>
       <p class="text-navy/50">${gameState.correct}/${total} correct</p>
       ${passed ? `<p class="text-mint font-bold">${t('boss.unlockNext')}</p>` : `<p class="text-navy/50">${t('boss.passRate')}</p>`}
-      ${result.levelUp ? '<div class="text-coral font-bold text-lg">🎉 Level Up!</div>' : ''}
-      ${badges.length > 0 ? badges.map(b => `<div class="text-mint font-bold">${b.icon} ${bilingual(b.name)}</div>`).join('') : ''}
-      <div class="flex gap-3 justify-center">
-        ${!passed ? `<button onclick="location.hash='#/game/boss-battle'" class="px-6 py-3 bg-coral text-white rounded-xl font-bold">${t('game.tryAgain')}</button>` : ''}
-        <button onclick="location.hash='#/home'" class="px-6 py-3 bg-cream-dark text-navy rounded-xl font-bold">${t('game.back')}</button>
-      </div>
-    </div>
-  `;
+    `,
+    result, badges,
+    replayRoute: !passed ? '#/game/boss-battle' : null,
+    replayLabel: t('game.tryAgain'),
+  });
 }

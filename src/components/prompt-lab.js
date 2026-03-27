@@ -11,6 +11,7 @@ import { playWrong, playComplete } from '../audio.js';
 import { createStopwatch, formatTime } from '../engine/timer.js';
 import { navigate } from '../router.js';
 import { refreshNav } from './nav.js';
+import { renderGameResult } from './game-result.js';
 
 let gameState = null;
 
@@ -172,10 +173,11 @@ function checkAnswer() {
   document.getElementById('pl-content').classList.add('hidden');
   const resultEl = document.getElementById('pl-result');
   resultEl.classList.remove('hidden');
-  resultEl.innerHTML = `
-    <div class="space-y-4">
-      <h3 class="text-2xl font-black text-navy">${pct >= 70 ? t('game.correct') : t('game.wrong')}</h3>
-      <div class="text-4xl">${'⭐'.repeat(stars)}${'☆'.repeat(3 - stars)}</div>
+  const userPrompt = gameState.placed.map(i => ex.fragments[i]).join(' ');
+  resultEl.innerHTML = renderGameResult({
+    title: pct >= 70 ? t('game.correct') : t('game.wrong'),
+    stars,
+    extraHTML: `
       <div class="text-sm text-navy/60">${t('game.accuracy')}: ${pct}%</div>
       <div class="bg-mint/10 rounded-xl p-4 text-left">
         <div class="text-xs text-mint font-bold mb-1">Correct prompt:</div>
@@ -183,16 +185,12 @@ function checkAnswer() {
       </div>
       <div class="bg-cream-dark rounded-xl p-4 text-left">
         <div class="text-xs text-navy/40 font-bold mb-1">Your prompt:</div>
-        <p class="text-navy font-mono text-sm">${gameState.placed.map(i => ex.fragments[i]).join(' ')}</p>
+        <p class="text-navy font-mono text-sm">${userPrompt}</p>
       </div>
-      ${result.levelUp ? '<div class="text-coral font-bold text-lg">🎉 Level Up!</div>' : ''}
-      ${badges.length > 0 ? badges.map(b => `<div class="text-mint font-bold">${b.icon} ${bilingual(b.name)}</div>`).join('') : ''}
-      <div class="flex gap-3 justify-center">
-        <button onclick="location.hash='#/game/prompt-lab'" class="px-6 py-3 bg-coral text-white rounded-xl font-bold">${t('game.playAgain')}</button>
-        <button onclick="location.hash='#/home'" class="px-6 py-3 bg-cream-dark text-navy rounded-xl font-bold">${t('game.back')}</button>
-      </div>
-    </div>
-  `;
+    `,
+    result, badges,
+    replayRoute: '#/game/prompt-lab',
+  });
 }
 
 function showAnswer() {

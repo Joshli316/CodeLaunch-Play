@@ -11,6 +11,7 @@ import { playWrong, playComplete } from '../audio.js';
 import { createStopwatch, formatTime } from '../engine/timer.js';
 import { navigate } from '../router.js';
 import { refreshNav } from './nav.js';
+import { renderGameResult } from './game-result.js';
 
 let gameState = null;
 
@@ -147,17 +148,14 @@ function submitAnswer() {
   if (allCorrect) playComplete(); else playWrong();
   refreshNav();
 
-  const lang = getState().settings.language;
-
   document.getElementById('wp-content').classList.add('hidden');
   const resultEl = document.getElementById('wp-result');
   resultEl.classList.remove('hidden');
-  resultEl.innerHTML = `
-    <div class="space-y-4">
-      <h3 class="text-2xl font-black text-navy">${allCorrect ? t('game.correct') : t('game.complete')}</h3>
-      <div class="text-4xl">${'⭐'.repeat(stars)}${'☆'.repeat(3 - stars)}</div>
+  resultEl.innerHTML = renderGameResult({
+    title: allCorrect ? t('game.correct') : t('game.complete'),
+    stars,
+    extraHTML: `
       <div class="text-sm text-navy/60">${t('game.accuracy')}: ${pct}% · ${formatTime(elapsed)}</div>
-
       <div class="bg-mint/10 rounded-xl p-4 text-left">
         <div class="text-xs text-mint font-bold mb-2">${t('workflow.correctOrder')}</div>
         ${wf.steps.map((step, i) => `
@@ -168,13 +166,8 @@ function submitAnswer() {
           </div>
         `).join('')}
       </div>
-
-      ${result.levelUp ? '<div class="text-coral font-bold text-lg">🎉 Level Up!</div>' : ''}
-      ${badges.length > 0 ? badges.map(b => `<div class="text-mint font-bold">${b.icon} ${bilingual(b.name)}</div>`).join('') : ''}
-      <div class="flex gap-3 justify-center">
-        <button onclick="location.hash='#/game/workflow-puzzle'" class="px-6 py-3 bg-coral text-white rounded-xl font-bold">${t('game.playAgain')}</button>
-        <button onclick="location.hash='#/home'" class="px-6 py-3 bg-cream-dark text-navy rounded-xl font-bold">${t('game.back')}</button>
-      </div>
-    </div>
-  `;
+    `,
+    result, badges,
+    replayRoute: '#/game/workflow-puzzle',
+  });
 }

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://codefu.pages.dev/sitemap.xml

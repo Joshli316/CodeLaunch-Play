@@ -1,0 +1,166 @@
+/* ═══ CodeFu Custom Animations & Game Styles ═══ */
+
+/* ── Card Flip (Flash Match) ── */
+.card-back {
+  position: relative;
+  overflow: hidden;
+}
+.card-back::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1A1A2E 0%, #2D2D44 100%);
+  border-radius: inherit;
+}
+.card-back span {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Shake Animation (Wrong Answer) ── */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* ── Pulse (Correct Answer) ── */
+@keyframes pulse-green {
+  0% { box-shadow: 0 0 0 0 rgba(78, 205, 196, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(78, 205, 196, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(78, 205, 196, 0); }
+}
+.pulse-correct {
+  animation: pulse-green 0.5s;
+}
+
+/* ── Timer Pulse ── */
+@keyframes timer-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.timer-pulse {
+  animation: timer-pulse 0.5s infinite;
+}
+
+/* ── Slide In (Term Sprint Options) ── */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.slide-in {
+  animation: slideIn 0.2s ease-out;
+}
+.slide-in:nth-child(2) { animation-delay: 0.05s; }
+.slide-in:nth-child(3) { animation-delay: 0.1s; }
+.slide-in:nth-child(4) { animation-delay: 0.15s; }
+
+/* ── Progress Ring ── */
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+/* ── Streak Fire Flicker ── */
+@keyframes flicker {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.1) rotate(-3deg); }
+  75% { transform: scale(0.95) rotate(3deg); }
+}
+.streak-fire {
+  display: inline-block;
+  animation: flicker 1.5s infinite ease-in-out;
+}
+
+/* ── Level Up Text ── */
+@keyframes levelUp {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.level-up-text {
+  animation: levelUp 0.6s ease-out;
+}
+
+/* ── Boss Battle Glow ── */
+@keyframes bossGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 74, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(255, 107, 74, 0.6); }
+}
+.boss-glow {
+  animation: bossGlow 2s infinite;
+}
+
+/* ── Boss Battle Dark Background ── */
+.boss-bg {
+  background: linear-gradient(135deg, #1A1A2E 0%, #16213E 50%, #0F3460 100%);
+}
+
+/* ── Game Card Hover ── */
+.game-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.game-card:hover {
+  transform: translateY(-2px);
+}
+
+/* ── Tap Target (Mobile) ── */
+button, a, .fm-card, .cq-option, .ts-option, .dc-option, .bb-option, .pl-chip, .wp-item {
+  min-height: 44px;
+}
+
+/* ── Confetti Canvas ── */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(26, 26, 46, 0.15);
+  border-radius: 3px;
+}
+
+/* ── Focus Management ── */
+:focus-visible {
+  outline: 2px solid #FF6B4A;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Selection ── */
+::selection {
+  background: rgba(255, 107, 74, 0.2);
+  color: #1A1A2E;
+}
+
+/* ── No underline on nav links ── */
+a.no-underline {
+  text-decoration: none;
+}
+a.no-underline:hover {
+  text-decoration: none;
+}

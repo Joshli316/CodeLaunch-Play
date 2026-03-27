@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeFu Logo Concepts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+SC:wght@700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      background: #FFF8F0;
+      color: #1A1A2E;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 60px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 900;
+      text-align: center;
+      color: #1A1A2E;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: #666;
+      margin-top: 8px;
+    }
+    .concepts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 60px;
+      justify-content: center;
+      max-width: 1200px;
+    }
+    .concept {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .concept-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* ── Concept A: Seal / Stamp Style ── */
+    .logo-seal {
+      width: 180px;
+      height: 180px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .seal-ring {
+      width: 180px;
+      height: 180px;
+      border: 5px solid #FF6B4A;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      position: relative;
+    }
+    .seal-ring::before {
+      content: '';
+      position: absolute;
+      width: 166px;
+      height: 166px;
+      border: 2px solid #FF6B4A;
+      border-radius: 50%;
+    }
+    .seal-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      font-weight: 700;
+      color: #FF6B4A;
+      letter-spacing: 2px;
+    }
+    .seal-chinese {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 52px;
+      font-weight: 900;
+      color: #FF6B4A;
+      line-height: 1;
+      margin: -2px 0;
+    }
+    .seal-sub {
+      font-size: 11px;
+      font-weight: 700;
+      color: #FF6B4A;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    /* ── Concept B: Bold Modern ── */
+    .logo-modern {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .modern-bracket {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 72px;
+      font-weight: 700;
+      color: #FF6B4A;
+      line-height: 1;
+    }
+    .modern-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .modern-en {
+      font-family: 'Inter', sans-serif;
+      font-size: 48px;
+      font-weight: 900;
+      color: #1A1A2E;
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+    .modern-en span {
+      color: #FF6B4A;
+    }
+    .modern-cn {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #888;
+      letter-spacing: 8px;
+      margin-top: 2px;
+    }
+
+    /* ── Concept C: Icon + Wordmark ── */
+    .logo-icon-combo {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .icon-badge {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #FF6B4A, #E55A3A);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(255, 107, 74, 0.3);
+      position: relative;
+    }
+    .icon-badge::after {
+      content: '';
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 15px;
+    }
+    .icon-text {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 36px;
+      font-weight: 900;
+      color: white;
+      line-height: 1;
+    }
+    .wordmark {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .wordmark-en {
+      font-family: 'Inter', sans-serif;
+      font-size: 40px;
+      font-weight: 900;
+      color: #1A1A2E;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+    .wordmark-en span {
+      color: #FF6B4A;
+    }
+    .wordmark-cn {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #999;
+      letter-spacing: 2px;
+    }
+
+    /* ── Concept D: Minimal Stacked ── */
+    .logo-stacked {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .stacked-icon {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+    .stacked-hex {
+      width: 100px;
+      height: 100px;
+      background: #1A1A2E;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .stacked-inner {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 28px;
+      font-weight: 700;
+      color: #FF6B4A;
+    }
+    .stacked-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 36px;
+      font-weight: 900;
+      color: #1A1A2E;
+      letter-spacing: -1px;
+    }
+    .stacked-name span { color: #FF6B4A; }
+    .stacked-cn {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #FF6B4A;
+      letter-spacing: 6px;
+    }
+
+    /* ── Concept E: Playful Game-Style ── */
+    .logo-playful {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .playful-main {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .playful-code {
+      font-family: 'Inter', sans-serif;
+      font-size: 56px;
+      font-weight: 900;
+      color: #1A1A2E;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+    .playful-fu {
+      font-family: 'Inter', sans-serif;
+      font-size: 56px;
+      font-weight: 900;
+      color: #FF6B4A;
+      letter-spacing: -2px;
+      line-height: 1;
+      position: relative;
+    }
+    .playful-fu::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: #4ECDC4;
+      border-radius: 3px;
+    }
+    .playful-cn {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: #1A1A2E;
+      letter-spacing: 12px;
+      padding-left: 12px;
+    }
+    .playful-tagline {
+      font-size: 12px;
+      font-weight: 700;
+      color: #999;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ── Dark Preview ── */
+    .dark-preview {
+      background: #1A1A2E;
+      border-radius: 24px;
+      padding: 48px 64px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+    .dark-preview .seal-ring {
+      border-color: #FF8A6F;
+    }
+    .dark-preview .seal-ring::before {
+      border-color: #FF8A6F;
+    }
+    .dark-preview .seal-code,
+    .dark-preview .seal-chinese,
+    .dark-preview .seal-sub {
+      color: #FF8A6F;
+    }
+    .dark-preview .wordmark-en,
+    .dark-preview .playful-code,
+    .dark-preview .playful-cn,
+    .dark-preview .stacked-name {
+      color: #FFF8F0;
+    }
+    .dark-preview .stacked-hex {
+      background: #FFF8F0;
+    }
+    .dark-preview .concept-label {
+      color: #666;
+    }
+
+    /* ── App Icon Preview ── */
+    .app-icons {
+      display: flex;
+      gap: 24px;
+      align-items: end;
+    }
+    .app-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .app-icon-box {
+      background: linear-gradient(135deg, #FF6B4A, #E55A3A);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      box-shadow: 0 8px 24px rgba(255, 107, 74, 0.35);
+    }
+    .app-icon-box.large {
+      width: 120px;
+      height: 120px;
+      border-radius: 28px;
+    }
+    .app-icon-box.medium {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+    }
+    .app-icon-box.small {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+    }
+    .app-icon-box .ai-cn {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-weight: 900;
+      color: white;
+      line-height: 1;
+    }
+    .app-icon-box.large .ai-cn { font-size: 48px; }
+    .app-icon-box.medium .ai-cn { font-size: 32px; }
+    .app-icon-box.small .ai-cn { font-size: 22px; }
+    .app-icon-box .ai-brackets {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: rgba(255,255,255,0.7);
+      line-height: 1;
+      margin-top: -4px;
+    }
+    .app-icon-box.large .ai-brackets { font-size: 16px; }
+    .app-icon-box.medium .ai-brackets { font-size: 12px; }
+    .app-icon-box.small .ai-brackets { font-size: 9px; }
+    .app-icon-label {
+      font-size: 12px;
+      color: #999;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: #1A1A2E;
+      text-align: center;
+      margin-bottom: -20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div>
+    <h1>CodeFu 码功</h1>
+    <p class="subtitle">Logo Concepts — "Duolingo for Claude Code"</p>
+  </div>
+
+  <div class="concepts">
+
+    <!-- Concept A: Seal -->
+    <div class="concept">
+      <span class="concept-label">A. Seal / Stamp</span>
+      <div class="logo-seal">
+        <div class="seal-ring">
+          <span class="seal-code">&lt;/&gt;</span>
+          <span class="seal-chinese">码功</span>
+          <span class="seal-sub">CodeFu</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Concept B: Bold Modern -->
+    <div class="concept">
+      <span class="concept-label">B. Bold Modern</span>
+      <div class="logo-modern">
+        <span class="modern-bracket">{</span>
+        <div class="modern-center">
+          <span class="modern-en">Code<span>Fu</span></span>
+          <span class="modern-cn">码 功</span>
+        </div>
+        <span class="modern-bracket">}</span>
+      </div>
+    </div>
+
+    <!-- Concept C: Icon + Wordmark -->
+    <div class="concept">
+      <span class="concept-label">C. Icon + Wordmark</span>
+      <div class="logo-icon-combo">
+        <div class="icon-badge">
+          <span class="icon-text">码</span>
+        </div>
+        <div class="wordmark">
+          <span class="wordmark-en">Code<span>Fu</span></span>
+          <span class="wordmark-cn">码功 — Master Code Language</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="concepts">
+
+    <!-- Concept D: Hex Stacked -->
+    <div class="concept">
+      <span class="concept-label">D. Hex Badge</span>
+      <div class="logo-stacked">
+        <div class="stacked-icon">
+          <div class="stacked-hex">
+            <span class="stacked-inner">&lt;码/&gt;</span>
+          </div>
+        </div>
+        <span class="stacked-name">Code<span>Fu</span></span>
+        <span class="stacked-cn">码 功</span>
+      </div>
+    </div>
+
+    <!-- Concept E: Playful -->
+    <div class="concept">
+      <span class="concept-label">E. Playful</span>
+      <div class="logo-playful">
+        <div class="playful-main">
+          <span class="playful-code">Code</span>
+          <span class="playful-fu">Fu</span>
+        </div>
+        <span class="playful-cn">码功</span>
+        <span class="playful-tagline">Master the Language of Code</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- App Icon Sizes -->
+  <p class="section-title">App Icon Preview</p>
+  <div class="app-icons">
+    <div class="app-icon">
+      <div class="app-icon-box large">
+        <span class="ai-cn">码功</span>
+        <span class="ai-brackets">&lt;CodeFu/&gt;</span>
+      </div>
+      <span class="app-icon-label">120px</span>
+    </div>
+    <div class="app-icon">
+      <div class="app-icon-box medium">
+        <span class="ai-cn">码功</span>
+        <span class="ai-brackets">&lt;/&gt;</span>
+      </div>
+      <span class="app-icon-label">80px</span>
+    </div>
+    <div class="app-icon">
+      <div class="app-icon-box small">
+        <span class="ai-cn">码</span>
+      </div>
+      <span class="app-icon-label">56px</span>
+    </div>
+  </div>
+
+  <!-- Dark Mode Preview -->
+  <p class="section-title">Dark Mode</p>
+  <div class="dark-preview">
+    <div class="concepts">
+      <div class="concept">
+        <span class="concept-label">A. Seal</span>
+        <div class="logo-seal">
+          <div class="seal-ring">
+            <span class="seal-code">&lt;/&gt;</span>
+            <span class="seal-chinese">码功</span>
+            <span class="seal-sub">CodeFu</span>
+          </div>
+        </div>
+      </div>
+      <div class="concept">
+        <span class="concept-label">E. Playful</span>
+        <div class="logo-playful">
+          <div class="playful-main">
+            <span class="playful-code">Code</span>
+            <span class="playful-fu">Fu</span>
+          </div>
+          <span class="playful-cn">码功</span>
+          <span class="playful-tagline" style="color:#666;">Master the Language of Code</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

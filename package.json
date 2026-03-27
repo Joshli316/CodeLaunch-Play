@@ -1,0 +1,12 @@
+{
+  "name": "codefu",
+  "version": "1.0.0",
+  "description": "CodeFu 码功 — Duolingo for Claude Code",
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i src/styles/tailwind.css -o dist/tailwind.css --minify",
+    "dev:css": "npx @tailwindcss/cli -i src/styles/tailwind.css -o dist/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4"
+  }
+}

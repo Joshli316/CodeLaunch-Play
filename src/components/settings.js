@@ -66,6 +66,7 @@ export function init() {
     const state = getState();
     state.settings.language = e.target.value;
     updateState(state);
+    document.documentElement.lang = e.target.value === 'zh' ? 'zh-CN' : 'en';
     // Re-render entire app
     navigate(window.location.hash.slice(1) || '/settings');
   });

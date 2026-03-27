@@ -46,8 +46,13 @@ export function init() {
     if (btn) startGame(btn.dataset.diff);
   });
 
+  // Use single delegated listener on board (set once, survives innerHTML rebuilds)
+  document.getElementById('fm-board').addEventListener('click', handleCardClick);
+
   // Default: start easy
   startGame('easy');
+
+  return () => { gameState = null; };
 }
 
 function startGame(difficulty) {
@@ -60,9 +65,16 @@ function startGame(difficulty) {
   const pairCount = pairCounts[difficulty];
   const weekTerms = glossaryTerms.filter(t => t.week <= week);
 
+  // Ensure enough terms; fall back to fewer pairs
+  const actualPairs = Math.min(pairCount, weekTerms.length);
+  if (actualPairs === 0) {
+    document.getElementById('fm-board').innerHTML = '<p class="text-center text-navy/50 col-span-full py-8">No terms available yet. Complete more days!</p>';
+    return;
+  }
+
   // Shuffle and pick
   const shuffled = [...weekTerms].sort(() => Math.random() - 0.5);
-  const selected = shuffled.slice(0, pairCount);
+  const selected = shuffled.slice(0, actualPairs);
 
   // Create card pairs: EN card + CN card
   const cards = [];
@@ -130,13 +142,12 @@ function renderBoard() {
         ${isFlipped
           ? (gameState.matched.has(card.id) ? 'bg-mint/20 text-mint border-2 border-mint' : 'bg-white text-navy border-2 border-coral')
           : 'bg-navy text-navy hover:bg-navy-light cursor-pointer card-back'}"
-        data-id="${card.id}" ${isFlipped ? 'disabled' : ''}>
+        data-id="${card.id}" ${isFlipped ? 'disabled' : ''}
+        aria-label="${isFlipped ? card.text : 'Hidden card'}">
         ${isFlipped ? `<span class="${card.type === 'en' ? 'font-mono text-xs' : ''}">${card.text}</span>` : '<span class="text-coral text-lg">?</span>'}
       </button>
     `;
   }).join('');
-
-  board.addEventListener('click', handleCardClick);
 }
 
 function handleCardClick(e) {

@@ -94,8 +94,8 @@ function renderPuzzle() {
             <span class="text-navy/50 text-xs ml-2">${bilingual(step.description)}</span>
           </div>
           <div class="flex flex-col gap-1">
-            <button class="wp-up text-navy/30 hover:text-coral text-lg leading-none" data-dir="up" data-index="${i}">▲</button>
-            <button class="wp-down text-navy/30 hover:text-coral text-lg leading-none" data-dir="down" data-index="${i}">▼</button>
+            <button class="wp-up text-navy/30 hover:text-coral text-lg leading-none" data-dir="up" data-index="${i}" aria-label="Move ${step.command} up">▲</button>
+            <button class="wp-down text-navy/30 hover:text-coral text-lg leading-none" data-dir="down" data-index="${i}" aria-label="Move ${step.command} down">▼</button>
           </div>
         </div>
       `).join('')}

@@ -26,6 +26,10 @@ export function render() {
 
 export function init() {
   showIntro();
+  return () => {
+    if (gameState?.timer) gameState.timer.stop();
+    gameState = null;
+  };
 }
 
 function showIntro() {

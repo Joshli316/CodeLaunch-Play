@@ -60,8 +60,14 @@ function pageHandler(component) {
   return () => {
     const main = document.getElementById('main-content');
     main.innerHTML = component.render();
+    // Move focus to main content for accessibility
+    main.setAttribute('tabindex', '-1');
+    main.focus({ preventScroll: true });
     refreshNav();
-    if (component.init) component.init();
+    if (component.init) {
+      const cleanup = component.init();
+      return cleanup; // Propagate cleanup function to router
+    }
   };
 }
 

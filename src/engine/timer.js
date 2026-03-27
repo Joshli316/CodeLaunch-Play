@@ -4,16 +4,18 @@
 export function createTimer(durationMs, onTick, onComplete) {
   let startTime = null;
   let remaining = durationMs;
+  let totalDuration = durationMs;
   let rafId = null;
   let paused = false;
+  let stopped = false;
 
   function tick() {
-    if (paused) return;
+    if (paused || stopped) return;
     const elapsed = Date.now() - startTime;
-    remaining = Math.max(0, durationMs - elapsed);
+    remaining = Math.max(0, totalDuration - elapsed);
     onTick(remaining);
     if (remaining <= 0) {
-      onComplete();
+      if (!stopped) onComplete();
       return;
     }
     rafId = requestAnimationFrame(tick);
@@ -23,12 +25,13 @@ export function createTimer(durationMs, onTick, onComplete) {
     start() {
       startTime = Date.now();
       paused = false;
+      stopped = false;
       tick();
     },
     pause() {
       paused = true;
       if (rafId) cancelAnimationFrame(rafId);
-      durationMs = remaining;
+      totalDuration = remaining;
     },
     resume() {
       startTime = Date.now();
@@ -36,6 +39,7 @@ export function createTimer(durationMs, onTick, onComplete) {
       tick();
     },
     stop() {
+      stopped = true;
       paused = true;
       if (rafId) cancelAnimationFrame(rafId);
     },

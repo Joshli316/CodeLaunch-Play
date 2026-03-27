@@ -51,6 +51,11 @@ export function init() {
   });
 
   startGame('en2cn');
+
+  return () => {
+    if (gameState?.timer) gameState.timer.stop();
+    if (gameState) gameState.active = false;
+  };
 }
 
 function startGame(mode) {
@@ -59,6 +64,10 @@ function startGame(mode) {
   const state = getState();
   const dayContent = getDayContent(state.currentDay);
   const weekTerms = glossaryTerms.filter(t => t.week <= dayContent.week);
+  if (weekTerms.length < 4) {
+    document.getElementById('ts-content').innerHTML = '<p class="text-center text-navy/50 py-8">Not enough terms available yet.</p>';
+    return;
+  }
 
   gameState = {
     mode,

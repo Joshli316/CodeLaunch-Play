@@ -128,6 +128,39 @@ const translations = {
   'workflow.instructions': { zh: '拖拽排列正确的命令顺序', en: 'Drag to arrange commands in the correct order' },
   'workflow.submit': { zh: '提交', en: 'Submit' },
   'workflow.correctOrder': { zh: '正确顺序', en: 'Correct Order' },
+
+  // Empty states
+  'empty.noTerms': { zh: '暂无可用术语，完成更多天数！', en: 'No terms available yet. Complete more days!' },
+  'empty.notEnoughTerms': { zh: '可用术语不足', en: 'Not enough terms available yet.' },
+  'empty.noExercises': { zh: '该难度暂无练习', en: 'No exercises available for this difficulty yet.' },
+  'empty.noWorkflows': { zh: '暂无可用工作流', en: 'No workflows available yet.' },
+  'empty.noTermsMatch': { zh: '没有匹配的术语', en: 'No terms match this filter.' },
+  'empty.noCommandsMatch': { zh: '没有匹配的命令', en: 'No commands match this filter.' },
+
+  // Learn
+  'learn.reviewDue': { zh: '待复习', en: 'Review Due' },
+  'learn.week': { zh: '第{n}周', en: 'W{n}' },
+
+  // Boss Battle
+  'boss.questionCount': { zh: '20题 · 10分钟', en: '20 questions · 10 minutes' },
+  'boss.typeTerm': { zh: '📝 术语', en: '📝 Term' },
+  'boss.typeScenario': { zh: '🎯 场景', en: '🎯 Scenario' },
+  'boss.typeCommand': { zh: '⌨️ 命令', en: '⌨️ Command' },
+  'boss.correct': { zh: '答对', en: 'correct' },
+
+  // Prompt Lab
+  'promptLab.correctPrompt': { zh: '正确的提示词：', en: 'Correct prompt:' },
+  'promptLab.yourPrompt': { zh: '你的提示词：', en: 'Your prompt:' },
+
+  // Profile
+  'profile.levelShort': { zh: 'Lv.{n}', en: 'Lv.{n}' },
+  'profile.bossStatus': { zh: 'Boss Battle {n}', en: 'Boss Battle {n}' },
+  'profile.passed': { zh: '已通过', en: 'passed' },
+
+  // Misc
+  'game.hiddenCard': { zh: '隐藏卡片', en: 'Hidden card' },
+  'game.moveUp': { zh: '上移 {cmd}', en: 'Move {cmd} up' },
+  'game.moveDown': { zh: '下移 {cmd}', en: 'Move {cmd} down' },
 };
 
 export function t(key, params = {}) {

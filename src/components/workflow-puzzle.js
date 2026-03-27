@@ -40,7 +40,7 @@ function startGame() {
   const workflow = getRandomWorkflow(dayContent.week);
 
   if (!workflow) {
-    document.getElementById('wp-content').innerHTML = '<p class="text-center text-navy/50">No workflows available yet.</p>';
+    document.getElementById('wp-content').innerHTML = `<p class="text-center text-navy/50">${t('empty.noWorkflows')}</p>`;
     return;
   }
 
@@ -95,8 +95,8 @@ function renderPuzzle() {
             <span class="text-navy/50 text-xs ml-2">${bilingual(step.description)}</span>
           </div>
           <div class="flex flex-col gap-1">
-            <button class="wp-up text-navy/30 hover:text-coral text-lg leading-none" data-dir="up" data-index="${i}" aria-label="Move ${step.command} up">▲</button>
-            <button class="wp-down text-navy/30 hover:text-coral text-lg leading-none" data-dir="down" data-index="${i}" aria-label="Move ${step.command} down">▼</button>
+            <button class="wp-up text-navy/30 hover:text-coral text-lg leading-none" data-dir="up" data-index="${i}" aria-label="${t('game.moveUp', {cmd: step.command})}">▲</button>
+            <button class="wp-down text-navy/30 hover:text-coral text-lg leading-none" data-dir="down" data-index="${i}" aria-label="${t('game.moveDown', {cmd: step.command})}">▼</button>
           </div>
         </div>
       `).join('')}

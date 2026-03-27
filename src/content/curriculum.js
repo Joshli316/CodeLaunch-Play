@@ -51,6 +51,16 @@ export function getDayContent(day) {
   };
 }
 
+// Single source of truth for game definitions
+export const GAMES = [
+  { id: 'flash-match', icon: '🃏', nameKey: 'games.flashMatch', descKey: 'games.flashMatchDesc', unlock: 1 },
+  { id: 'term-sprint', icon: '⚡', nameKey: 'games.termSprint', descKey: 'games.termSprintDesc', unlock: 2 },
+  { id: 'command-quest', icon: '🎯', nameKey: 'games.commandQuest', descKey: 'games.commandQuestDesc', unlock: 3 },
+  { id: 'prompt-lab', icon: '✍️', nameKey: 'games.promptLab', descKey: 'games.promptLabDesc', unlock: 5 },
+  { id: 'workflow-puzzle', icon: '🧩', nameKey: 'games.workflowPuzzle', descKey: 'games.workflowPuzzleDesc', unlock: 6 },
+  { id: 'boss-battle', icon: '⚔️', nameKey: 'games.bossBattle', descKey: 'games.bossBattleDesc', unlock: 7 },
+];
+
 export function getGameUnlockDay(gameId) {
   const map = {
     'flash-match': 1,

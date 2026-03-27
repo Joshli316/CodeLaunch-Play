@@ -66,7 +66,7 @@ function startGame(mode) {
   const dayContent = getDayContent(state.currentDay);
   const weekTerms = glossaryTerms.filter(t => t.week <= dayContent.week);
   if (weekTerms.length < 4) {
-    document.getElementById('ts-content').innerHTML = '<p class="text-center text-navy/50 py-8">Not enough terms available yet.</p>';
+    document.getElementById('ts-content').innerHTML = `<p class="text-center text-navy/50 py-8">${t('empty.notEnoughTerms')}</p>`;
     return;
   }
 

@@ -52,8 +52,8 @@ export function renderBottomNav() {
         ${tabs.map(tab => {
           const isActive = route === tab.path || (tab.path === '/games' && route.startsWith('/game'));
           return `
-            <a href="#${tab.path}" class="flex flex-col items-center py-1 px-3 no-underline ${isActive ? 'text-coral' : 'text-navy/50'} transition-colors">
-              <span class="text-xl">${tab.icon}</span>
+            <a href="#${tab.path}" class="flex flex-col items-center py-1 px-3 no-underline ${isActive ? 'text-coral' : 'text-navy/50'} transition-colors" ${isActive ? 'aria-current="page"' : ''}>
+              <span class="text-xl" aria-hidden="true">${tab.icon}</span>
               <span class="text-[10px] font-medium mt-0.5">${t(tab.label)}</span>
             </a>
           `;
@@ -76,8 +76,8 @@ export function renderBottomNav() {
         ${tabs.map(tab => {
           const isActive = route === tab.path || (tab.path === '/games' && route.startsWith('/game'));
           return `
-            <a href="#${tab.path}" class="flex items-center gap-3 px-4 py-3 rounded-xl no-underline transition-all ${isActive ? 'bg-coral text-white' : 'text-gray-400 hover:bg-navy-light hover:text-white'}">
-              <span class="text-xl">${tab.icon}</span>
+            <a href="#${tab.path}" class="flex items-center gap-3 px-4 py-3 rounded-xl no-underline transition-all ${isActive ? 'bg-coral text-white' : 'text-gray-400 hover:bg-navy-light hover:text-white'}" ${isActive ? 'aria-current="page"' : ''}>
+              <span class="text-xl" aria-hidden="true">${tab.icon}</span>
               <span class="font-medium">${t(tab.label)}</span>
             </a>
           `;

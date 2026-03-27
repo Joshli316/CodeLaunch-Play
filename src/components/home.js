@@ -4,7 +4,7 @@
 import { t } from '../i18n.js';
 import { getState, getLevelInfo } from '../state.js';
 import { getMasteryStats } from '../engine/mastery.js';
-import { getDayContent } from '../content/curriculum.js';
+import { getDayContent, GAMES } from '../content/curriculum.js';
 import { navigate } from '../router.js';
 
 export function render() {
@@ -34,7 +34,7 @@ export function render() {
       <!-- Progress Ring + Stats -->
       <div class="flex items-center justify-center gap-8">
         <div class="relative">
-          <svg width="120" height="120" class="transform -rotate-90">
+          <svg width="120" height="120" class="transform -rotate-90" role="img" aria-label="${todayGames}/${dailyGoal} ${t('home.todayProgress')}">
             <circle cx="60" cy="60" r="45" fill="none" stroke="#F5EDE3" stroke-width="8"/>
             <circle cx="60" cy="60" r="45" fill="none" stroke="#FF6B4A" stroke-width="8"
               stroke-dasharray="${circumference}" stroke-dashoffset="${strokeOffset}"
@@ -103,12 +103,7 @@ export function render() {
       <div>
         <h3 class="font-bold text-navy mb-3">${t('games.title')}</h3>
         <div class="grid grid-cols-2 gap-3">
-          ${renderGameCard('flash-match', '🃏', 'games.flashMatch', 'games.flashMatchDesc', dayContent)}
-          ${renderGameCard('term-sprint', '⚡', 'games.termSprint', 'games.termSprintDesc', dayContent)}
-          ${renderGameCard('command-quest', '🎯', 'games.commandQuest', 'games.commandQuestDesc', dayContent)}
-          ${renderGameCard('prompt-lab', '✍️', 'games.promptLab', 'games.promptLabDesc', dayContent)}
-          ${renderGameCard('workflow-puzzle', '🧩', 'games.workflowPuzzle', 'games.workflowPuzzleDesc', dayContent)}
-          ${renderGameCard('boss-battle', '⚔️', 'games.bossBattle', 'games.bossBattleDesc', dayContent)}
+          ${GAMES.map(g => renderGameCard(g.id, g.icon, g.nameKey, g.descKey, dayContent)).join('')}
         </div>
       </div>
     </div>
@@ -117,7 +112,8 @@ export function render() {
 
 function renderGameCard(id, icon, nameKey, descKey, dayContent) {
   const unlocked = dayContent.unlockedGames.includes(id);
-  const unlockDay = { 'flash-match': 1, 'term-sprint': 2, 'command-quest': 3, 'prompt-lab': 5, 'workflow-puzzle': 6, 'boss-battle': 7 }[id];
+  const game = GAMES.find(g => g.id === id);
+  const unlockDay = game ? game.unlock : 1;
   return `
     <a href="${unlocked ? '#/game/' + id : '#/home'}" class="game-card rounded-2xl p-4 ${unlocked ? 'bg-white shadow-sm hover:shadow-md' : 'bg-cream-dark opacity-50 cursor-not-allowed'} transition-all no-underline">
       <span class="text-2xl">${icon}</span>

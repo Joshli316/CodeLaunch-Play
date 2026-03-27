@@ -24,7 +24,7 @@ export function render() {
       <div class="bg-gradient-to-r from-coral to-coral-light rounded-2xl p-5 text-white">
         <div class="flex items-center justify-between mb-2">
           <span class="font-bold text-lg">${levelInfo.name[lang]}</span>
-          <span class="text-white/80 text-sm">Lv.${state.level}</span>
+          <span class="text-white/80 text-sm">${t('profile.levelShort', {n: state.level})}</span>
         </div>
         <div class="h-2 bg-white/20 rounded-full overflow-hidden mb-1">
           <div class="h-full bg-white rounded-full" style="width: ${Math.round(levelInfo.progress * 100)}%"></div>
@@ -63,7 +63,7 @@ export function render() {
           ${[1,2,3,4].map(w => `
             <div class="flex items-center gap-2">
               <span class="${state.bossesCompleted.includes(w) ? 'text-mint' : 'text-navy/20'}">${state.bossesCompleted.includes(w) ? '✅' : '⬜'}</span>
-              <span class="text-sm text-navy">Boss Battle ${w} ${state.bossesCompleted.includes(w) ? 'passed' : ''}</span>
+              <span class="text-sm text-navy">${t('profile.bossStatus', {n: w})} ${state.bossesCompleted.includes(w) ? t('profile.passed') : ''}</span>
             </div>
           `).join('')}
         </div>

@@ -26,10 +26,10 @@ export function render() {
         <button data-filter="all" class="learn-filter px-3 py-1 rounded-lg bg-coral text-white text-xs font-bold">All</button>
         <button data-filter="review" class="learn-filter px-3 py-1 rounded-lg bg-cream-dark text-navy text-xs font-bold">${t('learn.needsReview')}</button>
         <button data-filter="mastered" class="learn-filter px-3 py-1 rounded-lg bg-cream-dark text-navy text-xs font-bold">${t('learn.mastered')}</button>
-        <button data-filter="week1" class="learn-filter px-3 py-1 rounded-lg bg-cream-dark text-navy text-xs font-bold">W1</button>
-        <button data-filter="week2" class="learn-filter px-3 py-1 rounded-lg bg-cream-dark text-navy text-xs font-bold">W2</button>
-        <button data-filter="week3" class="learn-filter px-3 py-1 rounded-lg bg-cream-dark text-navy text-xs font-bold">W3</button>
-        <button data-filter="week4" class="learn-filter px-3 py-1 rounded-lg bg-cream-dark text-navy text-xs font-bold">W4</button>
+        <button data-filter="week1" class="learn-filter px-3 py-1 rounded-lg bg-cream-dark text-navy text-xs font-bold">${t('learn.week', {n: 1})}</button>
+        <button data-filter="week2" class="learn-filter px-3 py-1 rounded-lg bg-cream-dark text-navy text-xs font-bold">${t('learn.week', {n: 2})}</button>
+        <button data-filter="week3" class="learn-filter px-3 py-1 rounded-lg bg-cream-dark text-navy text-xs font-bold">${t('learn.week', {n: 3})}</button>
+        <button data-filter="week4" class="learn-filter px-3 py-1 rounded-lg bg-cream-dark text-navy text-xs font-bold">${t('learn.week', {n: 4})}</button>
       </div>
 
       <div id="learn-cards" class="space-y-3"></div>
@@ -78,7 +78,7 @@ function renderCards() {
     items = applyFilter(items, now);
 
     container.innerHTML = items.length === 0
-      ? '<p class="text-center text-navy/40 py-8">No terms match this filter.</p>'
+      ? '<p class="text-center text-navy/40 py-8">${t('empty.noTermsMatch')}</p>'
       : items.map(term => `
         <div class="bg-white rounded-xl p-4 shadow-sm">
           <div class="flex items-start justify-between">
@@ -94,7 +94,7 @@ function renderCards() {
           <p class="text-xs text-navy/30 mt-1 italic">${term.example || ''}</p>
           <div class="flex items-center gap-2 mt-2">
             <span class="text-[10px] px-2 py-0.5 rounded bg-cream-dark text-navy/40">W${term.week}</span>
-            ${term.mastery.nextReview && term.mastery.nextReview <= now ? '<span class="text-[10px] px-2 py-0.5 rounded bg-coral/10 text-coral">Review Due</span>' : ''}
+            ${term.mastery.nextReview && term.mastery.nextReview <= now ? '<span class="text-[10px] px-2 py-0.5 rounded bg-coral/10 text-coral">${t('learn.reviewDue')}</span>' : ''}
           </div>
         </div>
       `).join('');
@@ -107,7 +107,7 @@ function renderCards() {
     items = applyFilter(items, now);
 
     container.innerHTML = items.length === 0
-      ? '<p class="text-center text-navy/40 py-8">No commands match this filter.</p>'
+      ? '<p class="text-center text-navy/40 py-8">${t('empty.noCommandsMatch')}</p>'
       : items.map(cmd => `
         <div class="bg-white rounded-xl p-4 shadow-sm">
           <div class="flex items-start justify-between">
@@ -117,7 +117,7 @@ function renderCards() {
           <p class="text-sm text-navy/60 mt-2">${bilingual(cmd.description)}</p>
           <div class="flex items-center gap-2 mt-2">
             <span class="text-[10px] px-2 py-0.5 rounded bg-cream-dark text-navy/40">W${cmd.week}</span>
-            ${cmd.mastery.nextReview && cmd.mastery.nextReview <= now ? '<span class="text-[10px] px-2 py-0.5 rounded bg-coral/10 text-coral">Review Due</span>' : ''}
+            ${cmd.mastery.nextReview && cmd.mastery.nextReview <= now ? '<span class="text-[10px] px-2 py-0.5 rounded bg-coral/10 text-coral">${t('learn.reviewDue')}</span>' : ''}
           </div>
         </div>
       `).join('');

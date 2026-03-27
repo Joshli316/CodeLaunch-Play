@@ -43,7 +43,7 @@ function showIntro() {
       <h2 class="text-3xl font-black text-navy">${t('boss.title')}</h2>
       <p class="text-coral font-bold text-xl">${t('boss.week', { n: week })}</p>
       <p class="text-navy/50">${t('boss.passRate')}</p>
-      <div class="text-sm text-navy/40">20 questions · 10 minutes</div>
+      <div class="text-sm text-navy/40">${t('boss.questionCount')}</div>
       <div class="flex gap-3 justify-center">
         <button id="bb-start" class="px-8 py-4 bg-coral text-white rounded-xl font-bold text-lg boss-glow">${t('game.start')}</button>
         <button id="bb-back" class="px-6 py-4 bg-cream-dark text-navy rounded-xl font-bold">${t('game.back')}</button>
@@ -145,7 +145,7 @@ function renderQuestion() {
   const q = gameState.questions[gameState.currentIndex];
   const progress = (gameState.currentIndex / gameState.questions.length) * 100;
 
-  const typeLabel = { term: '📝 Term', scenario: '🎯 Scenario', command: '⌨️ Command' }[q.type];
+  const typeLabel = { term: t('boss.typeTerm'), scenario: t('boss.typeScenario'), command: t('boss.typeCommand') }[q.type];
 
   document.getElementById('bb-content').innerHTML = `
     <div class="boss-bg rounded-2xl p-6">
@@ -233,7 +233,7 @@ function endBattle() {
     heroContent: `
       <div class="text-6xl">${passed ? '🏆' : '💪'}</div>
       <div class="text-5xl font-black text-coral">${pct}%</div>
-      <p class="text-navy/50">${gameState.correct}/${total} correct</p>
+      <p class="text-navy/50">${gameState.correct}/${total} ${t('boss.correct')}</p>
       ${passed ? `<p class="text-mint font-bold">${t('boss.unlockNext')}</p>` : `<p class="text-navy/50">${t('boss.passRate')}</p>`}
     `,
     result, badges,

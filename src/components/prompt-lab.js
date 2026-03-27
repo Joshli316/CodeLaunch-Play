@@ -49,7 +49,7 @@ function startGame(difficulty) {
   const exercise = getRandomExercise(difficulty, dayContent.week);
 
   if (!exercise) {
-    document.getElementById('pl-content').innerHTML = '<p class="text-center text-navy/50">No exercises available for this difficulty yet.</p>';
+    document.getElementById('pl-content').innerHTML = `<p class="text-center text-navy/50">${t('empty.noExercises')}</p>`;
     return;
   }
 
@@ -180,11 +180,11 @@ function checkAnswer() {
     extraHTML: `
       <div class="text-sm text-navy/60">${t('game.accuracy')}: ${pct}%</div>
       <div class="bg-mint/10 rounded-xl p-4 text-left">
-        <div class="text-xs text-mint font-bold mb-1">Correct prompt:</div>
+        <div class="text-xs text-mint font-bold mb-1">${t('promptLab.correctPrompt')}</div>
         <p class="text-navy font-mono text-sm">${correctPrompt}</p>
       </div>
       <div class="bg-cream-dark rounded-xl p-4 text-left">
-        <div class="text-xs text-navy/40 font-bold mb-1">Your prompt:</div>
+        <div class="text-xs text-navy/40 font-bold mb-1">${t('promptLab.yourPrompt')}</div>
         <p class="text-navy font-mono text-sm">${userPrompt}</p>
       </div>
     `,
@@ -201,7 +201,7 @@ function showAnswer() {
   if (existing) return;
   content.insertAdjacentHTML('beforeend', `
     <div id="pl-answer-reveal" class="bg-mint/10 rounded-xl p-4 mt-4">
-      <div class="text-xs text-mint font-bold mb-1">Correct prompt:</div>
+      <div class="text-xs text-mint font-bold mb-1">${t('promptLab.correctPrompt')}</div>
       <p class="text-navy font-mono text-sm">${correctPrompt}</p>
     </div>
   `);

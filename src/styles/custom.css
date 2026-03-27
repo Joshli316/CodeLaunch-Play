@@ -108,6 +108,12 @@
   transform: translateY(-2px);
 }
 
+/* ── Learn/Profile Card Hover ── */
+.learn-card:hover, .stat-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+
 /* ── Tap Target (Mobile) ── */
 button, a, .fm-card, .cq-option, .ts-option, .dc-option, .bb-option, .pl-chip, .wp-item {
   min-height: 44px;

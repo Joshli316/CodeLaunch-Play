@@ -26,7 +26,7 @@ export function render() {
       <div class="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between">
         <span class="font-medium text-navy">${t('settings.sound')}</span>
         <label class="relative inline-flex items-center cursor-pointer">
-          <input type="checkbox" id="set-sound" class="sr-only peer" ${s.sound ? 'checked' : ''}>
+          <input type="checkbox" id="set-sound" class="sr-only peer" role="switch" aria-checked="${s.sound}" ${s.sound ? 'checked' : ''}>
           <div class="w-11 h-6 bg-cream-dark peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-coral"></div>
         </label>
       </div>
@@ -35,7 +35,7 @@ export function render() {
       <div class="bg-white rounded-xl p-4 shadow-sm flex items-center justify-between">
         <span class="font-medium text-navy">${t('settings.darkMode')}</span>
         <label class="relative inline-flex items-center cursor-pointer">
-          <input type="checkbox" id="set-dark" class="sr-only peer" ${s.darkMode ? 'checked' : ''}>
+          <input type="checkbox" id="set-dark" class="sr-only peer" role="switch" aria-checked="${s.darkMode}" ${s.darkMode ? 'checked' : ''}>
           <div class="w-11 h-6 bg-cream-dark peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-coral"></div>
         </label>
       </div>

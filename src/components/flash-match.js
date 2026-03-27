@@ -69,7 +69,7 @@ function startGame(difficulty) {
   // Ensure enough terms; fall back to fewer pairs
   const actualPairs = Math.min(pairCount, weekTerms.length);
   if (actualPairs === 0) {
-    document.getElementById('fm-board').innerHTML = '<p class="text-center text-navy/50 col-span-full py-8">No terms available yet. Complete more days!</p>';
+    document.getElementById('fm-board').innerHTML = `<p class="text-center text-navy/50 col-span-full py-8">${t('empty.noTerms')}</p>`;
     return;
   }
 
@@ -144,7 +144,7 @@ function renderBoard() {
           ? (gameState.matched.has(card.id) ? 'bg-mint/20 text-mint border-2 border-mint' : 'bg-white text-navy border-2 border-coral')
           : 'bg-navy text-navy hover:bg-navy-light cursor-pointer card-back'}"
         data-id="${card.id}" ${isFlipped ? 'disabled' : ''}
-        aria-label="${isFlipped ? card.text : 'Hidden card'}">
+        aria-label="${isFlipped ? card.text : t('game.hiddenCard')}">
         ${isFlipped ? `<span class="${card.type === 'en' ? 'font-mono text-xs' : ''}">${card.text}</span>` : '<span class="text-coral text-lg">?</span>'}
       </button>
     `;

@@ -165,7 +165,7 @@ function endChallenge() {
   updateState(state);
   updateStreak();
 
-  awardGameCompletion('daily-challenge', gameState.correct, total, 0, elapsed);
+  const result = awardGameCompletion('daily-challenge', gameState.correct, total, 0, elapsed);
   const badges = checkAchievements({});
   playComplete();
   refreshNav();
@@ -177,6 +177,6 @@ function endChallenge() {
       <p class="text-coral font-bold">${t('daily.streakKept')} 🔥 ${getState().streak}</p>
       <div class="text-navy/50 text-sm">${gameState.correct}/${total} correct · ${formatTime(elapsed)}</div>
     `,
-    result: {}, badges,
+    result, badges,
   });
 }
